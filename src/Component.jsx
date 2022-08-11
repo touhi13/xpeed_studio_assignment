@@ -10,6 +10,7 @@ const style = {
   cursor: "move"
 };
 const Component = ({ data, components, path }) => {
+
   const ref = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
@@ -21,9 +22,10 @@ const Component = ({ data, components, path }) => {
 
   const opacity = isDragging ? 0 : 1;
   drag(ref);
-  // console.log(isDragging);
 
   const component = components[data.id];
+  // console.log(component, data.id);
+
 
   //popup
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +42,7 @@ const Component = ({ data, components, path }) => {
         <div>{component.content}</div>
 
       </div>
-      {console.log(isOpen, data.id)}
+      {/* {console.log(isOpen, data.id)} */}
       {isOpen && (
         // console.log(isOpen,data.id)
         <Popup setIsOpen={setIsOpen} itemId={data.id} />

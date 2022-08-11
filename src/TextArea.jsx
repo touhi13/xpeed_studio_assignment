@@ -6,13 +6,13 @@ const TextArea = ({ layout, components }) => {
     const [fullObject, setFullObject] = useState({});
 
     useEffect(() => {
-        console.log("h")
+        // console.log("h")
         const value = {
             'layout': layout,
         };
         const pretty = JSON.stringify(value, undefined, 2);
         setFullObject(pretty);
-        console.log(fullObject);
+        // console.log(fullObject);
     });
 
     return (

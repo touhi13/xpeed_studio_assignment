@@ -50,8 +50,17 @@ export const SIDEBAR_ITEMS = [
     id: shortid.generate(),
     type: SIDEBAR_ITEM,
     component: {
-      type: "imagfdfe",
-      content: "Some image"
+      type: "row",
+      content: "Some row"
+    }
+  }
+  ,
+  {
+    id: shortid.generate(),
+    type: SIDEBAR_ITEM,
+    component: {
+      type: "column",
+      content: "Some column"
     }
   }
 ];

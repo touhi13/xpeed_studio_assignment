@@ -22,8 +22,6 @@ const Container = () => {
   const [layout, setLayout] = useState(initialLayout);
   const [components, setComponents] = useState(initialComponents);
 
-  const [fullObject, setFullObject] = useState(initialData);
-
   const handleDropToTrashBin = useCallback(
     (dropZone, item) => {
       const splitItemPath = item.path.split("-");
@@ -131,16 +129,6 @@ const Container = () => {
       />
     )
   }
-  // console.log(layout, components);
-  // const renderTextArea = () => {
-  //   return (
-  //     <textarea
-  //       value={JSON.stringify(fullObject)}
-      
-  //     />
-  //   )
-
-  // }
   // dont use index for key when mapping over items
   // causes this issue - https://github.com/react-dnd/react-dnd/issues/342
   return (
@@ -153,6 +141,7 @@ const Container = () => {
       <div className="pageContainer">
         <div className="page">
           {layout.map((row, index) => {
+            // console.log(layout)
             const currentPath = `${index}`;
 
             return (
@@ -186,7 +175,6 @@ const Container = () => {
           onDrop={handleDropToTrashBin}
         />
         {renderTextArea(layout, components)}
-        {/* <TextArea layout ={{layout}} components={{components}}/> */}
       </div>
     </div>
   );

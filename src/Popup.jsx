@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Popup = ({setIsOpen, itemId}) => {  
-    console.log(itemId, setIsOpen(true));
+    // console.log(itemId, setIsOpen(true));
     return (
        
           <>
