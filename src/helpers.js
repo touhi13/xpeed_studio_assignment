@@ -78,6 +78,7 @@ export const removeChildFromChildren = (children, splitItemPath) => {
 };
 
 export const addChildToChildren = (children, splitDropZonePath, item) => {
+  // console.log(item)
   if (splitDropZonePath.length === 1) {
     const dropZoneIndex = Number(splitDropZonePath[0]);
     return insert(children, dropZoneIndex, item);

@@ -1,17 +1,21 @@
 import React from "react";
 import classNames from "classnames";
 import { useDrop } from "react-dnd";
-import { COMPONENT, SIDEBAR_ITEM, ROW, COLUMN } from "./constants";
+import { COMPONENT, SIDEBAR_ITEM, ROW, COLUMN} from "./constants";
 
+// console.log(SIDEBAR_ITEMS);
 const ACCEPTS = [SIDEBAR_ITEM, COMPONENT, ROW, COLUMN];
-
+// console.log(ACCEPTS);
 const DropZone = ({ data, onDrop, isLast, className }) => {
+  // console.log({ data, onDrop, isLast, className });
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: ACCEPTS,
     drop: (item, monitor) => {
       onDrop(data, item);
     },
     canDrop: (item, monitor) => {
+      // console.log(item);
+
       const dropZonePath = data.path;
       const splitDropZonePath = dropZonePath.split("-");
       const itemPath = item.path;
@@ -62,12 +66,15 @@ const DropZone = ({ data, onDrop, isLast, className }) => {
       return true;
     },
     collect: (monitor) => ({
+
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop()
+      
     })
   });
 
   const isActive = isOver && canDrop;
+  // console.log(isActive)
   return (
     <div
       className={classNames(

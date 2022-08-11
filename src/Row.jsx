@@ -6,6 +6,12 @@ import Column from "./Column";
 
 const style = {};
 const Row = ({ data, components, handleDrop, path }) => {
+  // console.log(data);
+  // console.log(components);
+  // console.log(handleDrop);
+  // console.log(path);
+
+
   const ref = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
