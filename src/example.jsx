@@ -32,13 +32,14 @@ const Container = () => {
 
   const handleDrop = useCallback(
     (dropZone, item) => {
-      console.log('dropZone', dropZone)
-      console.log('item', item)
+      // console.log('dropZone', dropZone)
+      // console.log('item', item)
 
       const splitDropZonePath = dropZone.path.split("-");
       const pathToDropZone = splitDropZonePath.slice(0, -1).join("-");
 
       const newItem = { id: item.id, type: item.type };
+      // console.log('newItem', item)
       if (item.type === COLUMN) {
         newItem.children = item.children;
       }
@@ -52,7 +53,9 @@ const Container = () => {
         };
         const newItem = {
           id: newComponent.id,
-          type: COMPONENT
+          type: COMPONENT,
+          componentType: newComponent.type,
+
         };
         setComponents({
           ...components,

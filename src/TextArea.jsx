@@ -18,7 +18,7 @@ const TextArea = ({ layout, components }) => {
     return (
         <div>
             <h4>Full Object Data:</h4>
-            <textarea defaultValue={fullObject} name="" id="" cols="50" rows="80" />
+            <textarea defaultValue={fullObject} name="" id="" cols="100" rows="50" />
         </div>
     );
 };

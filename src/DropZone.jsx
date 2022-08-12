@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useDrop } from "react-dnd";
-import { COMPONENT, SIDEBAR_ITEM, ROW, COLUMN} from "./constants";
+import { COMPONENT, SIDEBAR_ITEM, ROW, COLUMN } from "./constants";
 
 // console.log(SIDEBAR_ITEMS);
 const ACCEPTS = [SIDEBAR_ITEM, COMPONENT, ROW, COLUMN];
@@ -14,20 +14,22 @@ const DropZone = ({ data, onDrop, isLast, className }) => {
       onDrop(data, item);
     },
     canDrop: (item, monitor) => {
-      // console.log(item);
+      // console.log(monitor);
 
       const dropZonePath = data.path;
       const splitDropZonePath = dropZonePath.split("-");
       const itemPath = item.path;
-
+      // console.log(splitDropZonePath);
+      // console.log(itemPath);
       // sidebar items can always be dropped anywhere
       if (!itemPath) {
         // if (data.childrenCount >= 3) {
         //  return false;
         // }
         return true;
-      }
 
+      }
+      
       const splitItemPath = itemPath.split("-");
 
       // limit columns when dragging from one row to another row
@@ -41,7 +43,7 @@ const DropZone = ({ data, onDrop, isLast, className }) => {
       ) {
         return false;
       }
-
+ 
       // Invalid (Can't drop a parent element (row) into a child (column))
       const parentDropInChild = splitItemPath.length < splitDropZonePath.length;
       if (parentDropInChild) return false;
@@ -66,15 +68,14 @@ const DropZone = ({ data, onDrop, isLast, className }) => {
       return true;
     },
     collect: (monitor) => ({
-
-      isOver: monitor.isOver(),
+      isOver: monitor.isOver({ shallow: true }),
       canDrop: monitor.canDrop()
-      
+
     })
   });
 
   const isActive = isOver && canDrop;
-  // console.log(isActive)
+  console.log(isOver, canDrop);
   return (
     <div
       className={classNames(
