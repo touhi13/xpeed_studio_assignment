@@ -51,7 +51,7 @@ const Row = ({ data, components, handleDrop, path }) => {
   return (
 
     <div ref={ref} style={{ ...style, opacity }} className="base draggable row">
-      {data.componentType !== 'row' ? data.id : 'new row'}
+      {data.componentType !== 'row' ? data.id : `new row ${data.id}`}
       {/* {
         data.componentType !== 'row' && */}
       <div className="columns">

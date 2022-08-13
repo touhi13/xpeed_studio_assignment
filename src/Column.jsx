@@ -41,23 +41,26 @@ const Column = ({ data, components, handleDrop, path }) => {
       style={{ ...style, opacity }}
       className="base draggable column"
     >
-      {data.id}
-      {data.children.map((component, index) => {
-        const currentPath = `${path}-${index}`;
+      {data.componentType !== 'column' ? data.id : `new column ${data.id}`}
 
-        return (
-          <React.Fragment key={component.id}>
-            <DropZone
-              data={{
-                path: currentPath,
-                childrenCount: data.children.length
-              }}
-              onDrop={handleDrop}
-            />
-            {renderComponent(component, currentPath)}
-          </React.Fragment>
-        );
-      })}
+      {
+      data.componentType !== 'column' &&
+        data.children.map((component, index) => {
+          const currentPath = `${path}-${index}`;
+
+          return (
+            <React.Fragment key={component.id}>
+              <DropZone
+                data={{
+                  path: currentPath,
+                  childrenCount: data.children.length
+                }}
+                onDrop={handleDrop}
+              />
+              {renderComponent(component, currentPath)}
+            </React.Fragment>
+          );
+        })}
       <DropZone
         data={{
           path: `${path}-${data.children.length}`,
