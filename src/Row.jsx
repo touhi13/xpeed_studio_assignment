@@ -56,7 +56,7 @@ const Row = ({ data, components, handleDrop, path }) => {
         data.componentType !== 'row' && */}
       <div className="columns">
         {
-          data.componentType !== 'row' &&
+
           data.children.map((column, index) => {
             const currentPath = `${path}-${index}`;
 
@@ -70,20 +70,29 @@ const Row = ({ data, components, handleDrop, path }) => {
                   onDrop={handleDrop}
                   className="horizontalDrag"
                 />
-                {renderColumn(column, currentPath)}
+                {
+                 
+                  data.componentType !== 'row' &&
+                  renderColumn(column, currentPath)
+
+                }
               </React.Fragment>
             );
           })
         }
-        <DropZone
-          data={{
-            path: `${path}-${data.children.length}`,
-            childrenCount: data.children.length
-          }}
-          onDrop={handleDrop}
-          className="horizontalDrag"
-          isLast
-        />
+        {
+          // data.componentType !== "column" &&
+          <DropZone
+            data={{
+              path: `${path}-${data.children.length}`,
+              childrenCount: data.children.length
+            }}
+            onDrop={handleDrop}
+            className="horizontalDrag"
+            isLast
+          />
+        }
+
       </div>
       {/* } */}
 

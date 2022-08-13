@@ -36,40 +36,46 @@ const Column = ({ data, components, handleDrop, path }) => {
   };
 
   return (
-    <div
-      ref={ref}
-      style={{ ...style, opacity }}
-      className="base draggable column"
-    >
-      {data.componentType !== 'column' ? data.id : `new column ${data.id}`}
+    data.componentType !== 'row' ? (
+      <div
+        ref={ref}
+        style={{ ...style, opacity }}
+        className="base draggable column"
+      >
+        {/* {console.log(data.componentType)} */}
+        {data.componentType !== 'column' ? data.id : `new column ${data.id}`}
 
-      {
-      data.componentType !== 'column' &&
-        data.children.map((component, index) => {
-          const currentPath = `${path}-${index}`;
+        {
+          data.componentType !== 'column' &&
+          data.children.map((component, index) => {
+            const currentPath = `${path}-${index}`;
 
-          return (
-            <React.Fragment key={component.id}>
-              <DropZone
-                data={{
-                  path: currentPath,
-                  childrenCount: data.children.length
-                }}
-                onDrop={handleDrop}
-              />
-              {renderComponent(component, currentPath)}
-            </React.Fragment>
-          );
-        })}
-      <DropZone
-        data={{
-          path: `${path}-${data.children.length}`,
-          childrenCount: data.children.length
-        }}
-        onDrop={handleDrop}
-        isLast
-      />
-    </div>
+            return (
+              <React.Fragment key={component.id}>
+                <DropZone
+                  data={{
+                    path: currentPath,
+                    childrenCount: data.children.length
+                  }}
+                  onDrop={handleDrop}
+                />
+
+                {
+                  data.componentType !== 'column' &&
+                  renderComponent(component, currentPath)
+                }
+              </React.Fragment>
+            );
+          })}
+        <DropZone
+          data={{
+            path: `${path}-${data.children.length}`,
+            childrenCount: data.children.length
+          }}
+          onDrop={handleDrop}
+          isLast
+        />
+      </div>) : (<></>)
   );
 };
 export default Column;

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 import DropZone from "./DropZone";
 import TrashDropZone from "./TrashDropZone";
@@ -21,6 +21,8 @@ const Container = () => {
   const initialComponents = initialData.components;
   const [layout, setLayout] = useState(initialLayout);
   const [components, setComponents] = useState(initialComponents);
+
+  const [isDropZone, setIsDropZone] = useState(true);
 
   const handleDropToTrashBin = useCallback(
     (dropZone, item) => {
@@ -113,7 +115,6 @@ const Container = () => {
   // console.log(initialData);
   const renderRow = (row, currentPath) => {
     return (
-      // console.log(components)
       <Row
         key={row.id}
         data={row}
@@ -124,7 +125,7 @@ const Container = () => {
     );
   };
 
-  const renderTextArea=(layout, components)=>{
+  const renderTextArea = (layout, components) => {
     return (
       <TextArea
         layout={layout}
@@ -157,18 +158,19 @@ const Container = () => {
                   onDrop={handleDrop}
                   path={currentPath}
                 />
-                {renderRow(row, currentPath)}
+
+                {row.componentType !== "column" && renderRow(row, currentPath)}
               </React.Fragment>
             );
           })}
-          <DropZone
-            data={{
-              path: `${layout.length}`,
-              childrenCount: layout.length
-            }}
-            onDrop={handleDrop}
-            isLast
-          />
+            <DropZone
+              data={{
+                path: `${layout.length}`,
+                childrenCount: layout.length
+              }}
+              onDrop={handleDrop}
+              isLast
+            />
         </div>
 
         <TrashDropZone

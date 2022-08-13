@@ -8,6 +8,7 @@ const ACCEPTS = [SIDEBAR_ITEM, COMPONENT, ROW, COLUMN];
 // console.log(ACCEPTS);
 const DropZone = ({ data, onDrop, isLast, className }) => {
   // console.log({ data, onDrop, isLast, className });
+  // console.log(data);
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: ACCEPTS,
     drop: (item, monitor) => {
@@ -68,14 +69,14 @@ const DropZone = ({ data, onDrop, isLast, className }) => {
       return true;
     },
     collect: (monitor) => ({
-      isOver: monitor.isOver({ shallow: true }),
+      isOver: monitor.isOver(),
       canDrop: monitor.canDrop()
 
     })
   });
 
   const isActive = isOver && canDrop;
-  console.log(isOver, canDrop);
+  // console.log(isOver, canDrop);
   return (
     <div
       className={classNames(
