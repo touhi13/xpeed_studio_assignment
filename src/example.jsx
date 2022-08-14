@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 
 import DropZone from "./DropZone";
 import TrashDropZone from "./TrashDropZone";
@@ -21,8 +21,6 @@ const Container = () => {
   const initialComponents = initialData.components;
   const [layout, setLayout] = useState(initialLayout);
   const [components, setComponents] = useState(initialComponents);
-
-  const [isDropZone, setIsDropZone] = useState(true);
 
   const handleDropToTrashBin = useCallback(
     (dropZone, item) => {
